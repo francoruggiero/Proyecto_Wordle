@@ -1,4 +1,5 @@
 from re import X
+from collections import Counter
 import random
 
 palabras5 = []
@@ -12,9 +13,9 @@ def filtrar_palabras():
             cantidad_de_palabras += 1
     return print("La cantidad de palabras es {}" .format(cantidad_de_palabras))
 
-def eleccion():
-    palabra_elegida = random.choice(palabras5)
-    return print(palabra_elegida)
+
+
+
 
 def evaluar_palabra():
     a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
@@ -27,6 +28,24 @@ def evaluar_palabra():
             print("!!! ERROR: La palabra introducida contiene numeros.")
         a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
     print("La palabra esta en el diccionario")
+
+    
+
+def caracteres(a,eleccion):
+    Palabra_introducida = Counter(a)
+    Palabra_elegida = Counter(eleccion)
+    comunes = Palabra_introducida & Palabra_elegida
+
+    if len(comunes) == 0:
+        return print("No tiene ninguna letra en comun")
+    
+    comunes = list(comunes.elements())
+    comunes = sorted(comunes)
+
+    return comunes
+
+    
+
     
         
 
@@ -34,4 +53,30 @@ def evaluar_palabra():
 
 if __name__ == "__main__":
     filtrar_palabras()
-    evaluar_palabra()
+    print(palabras5)
+    palabra_elegida = random.choice(palabras5)
+    print("La palabra es: " + palabra_elegida)
+
+    a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
+    while a not in palabras5:
+        if a not in listado:
+            print("!!! ERROR: La palabra introducida no esta en el diccionario")
+        if len(a) != 5:
+            print("!!! ERROR: La palabra introducida no tiene 5 letras.")
+        if a.isnumeric() == True:
+            print("!!! ERROR: La palabra introducida contiene numeros.")
+        a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
+    print("La palabra esta en el diccionario")
+
+    Palabra_introducida = Counter(a)
+    Palabra_random = Counter(palabra_elegida)
+    comunes = Palabra_introducida & Palabra_random
+
+    if len(comunes) == 0:
+        print("No tiene ninguna letra en comun")
+    
+    comunes = list(comunes.elements())
+    comunes = sorted(comunes)
+
+    print(comunes)
+   # evaluar_palabra()
