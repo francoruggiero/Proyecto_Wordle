@@ -1,24 +1,24 @@
 from re import X
 import random
 
-diccionario = []
+palabras5 = []
 listado = open("LISTADO PALABRAS.txt", mode= "r")
 
 def filtrar_palabras():
     cantidad_de_palabras = 0
     for item in listado:
         if len(item) == 6:
-            diccionario.append(item.strip("\n"))
+            palabras5.append(item.strip("\n"))
             cantidad_de_palabras += 1
     return print("La cantidad de palabras es {}" .format(cantidad_de_palabras))
 
 def eleccion():
-    palabra_elegida = random.choice(diccionario)
+    palabra_elegida = random.choice(palabras5)
     return print(palabra_elegida)
 
 def evaluar_palabra():
     a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
-    while a not in diccionario:
+    while a not in palabras5:
         if a not in listado:
             print("!!! ERROR: La palabra introducida no esta en el diccionario")
         if len(a) != 5:
