@@ -26,7 +26,7 @@ def evaluar_palabra():
         if len(a) != 5:
             print("!!! ERROR: La palabra introducida no tiene 5 letras.")
         if a.isalpha() == False:
-            print("!!! ERROR: La palabra introducida contiene numeros.")
+            print("!!! ERROR: La palabra introducida contiene numeros o caracteres raros.")
         a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
     print("La palabra esta en el diccionario")
 
@@ -61,11 +61,11 @@ if __name__ == "__main__":
     a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
     while a not in palabras5:
         if a not in listado:
-            print("!!! ERROR: La palabra introducida no esta en el diccionario")
+            print("!!! ERROR: La palabra introducida no esta en el diccionario.")
         if len(a) != 5:
             print("!!! ERROR: La palabra introducida no tiene 5 letras.")
-        if a.isnumeric() == True:
-            print("!!! ERROR: La palabra introducida contiene numeros.")
+        if a.isalpha() == False:
+            print("!!! ERROR: La palabra introducida contiene numeros o caracteres raros.")
         a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
     print("La palabra esta en el diccionario")
 
@@ -82,4 +82,4 @@ if __name__ == "__main__":
     print(comunes)
    # evaluar_palabra()
     
-   
+    
