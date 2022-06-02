@@ -1,5 +1,8 @@
-from pickle import FALSE
-from re import X
+from ast import For
+from tkinter.ttk import Style
+import colorama
+from colorama import Fore, Back
+colorama.init(autoreset=True)
 from collections import Counter
 import random
 
@@ -12,74 +15,32 @@ def filtrar_palabras():
         if len(palabra) == 6:
             palabras5.append(palabra.strip("\n"))
             cantidad_de_palabras += 1
-    return print("La cantidad de palabras es {}" .format(cantidad_de_palabras))
-
-
-
-
-
-def evaluar_palabra():
-    a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
-    while a not in palabras5:
-        if a not in listado:
-            print("!!! ERROR: La palabra introducida no esta en el diccionario")
-        if len(a) != 5:
-            print("!!! ERROR: La palabra introducida no tiene 5 letras.")
-        if a.isalpha() == False:
-            print("!!! ERROR: La palabra introducida contiene numeros o caracteres raros.")
-        a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
-    print("La palabra esta en el diccionario")
-
-    
-
-def caracteres(a,eleccion):
-    Palabra_introducida = Counter(a)
-    Palabra_elegida = Counter(eleccion)
-    comunes = Palabra_introducida & Palabra_elegida
-
-    if len(comunes) == 0:
-        return print("No tiene ninguna letra en comun")
-    
-    comunes = list(comunes.elements())
-    comunes = sorted(comunes)
-
-    return comunes
-
-    
-
-    
-        
-
-
-
+   
 if __name__ == "__main__":
     filtrar_palabras()
-    print(palabras5)
-    palabra_elegida = random.choice(palabras5)
-    print("La palabra es: " + palabra_elegida)
-
-    a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
-    while a not in palabras5:
-        if a not in listado:
-            print("!!! ERROR: La palabra introducida no esta en el diccionario.")
-        if len(a) != 5:
-            print("!!! ERROR: La palabra introducida no tiene 5 letras.")
-        if a.isalpha() == False:
-            print("!!! ERROR: La palabra introducida contiene numeros o caracteres raros.")
-        a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
-    print("La palabra esta en el diccionario")
-
-    Palabra_introducida = Counter(a)
-    Palabra_random = Counter(palabra_elegida)
-    comunes = Palabra_introducida & Palabra_random
-
-    if len(comunes) == 0:
-        print("No tiene ninguna letra en comun")
-    
-    comunes = list(comunes.elements())
-    comunes = sorted(comunes)
-
-    print(comunes)
-   # evaluar_palabra()
-    
-    
+    play = ""
+    while play != "p":
+        palabra_elegida = random.choice(palabras5)
+        for p in range(1, 6):
+            a = input("INTRODUCIR PALABRA DE 5 LETRAS:  ")
+            while (len(a) !=5 or a not in palabras5 or not a.isalpha()):
+                if a not in listado:
+                    print("!!! ERROR: La palabra introducida no esta en el diccionario.")
+                if len(a) != 5:
+                    print("!!! ERROR: La palabra introducida no tiene 5 letras.")
+                if a.isalpha() == False:
+                    print("!!! ERROR: La palabra introducida contiene numeros o caracteres raros.")
+                a = input("Vuelva a ingresar una palabra:  ")
+            for i in range(len(a)):
+                if a[i] == palabra_elegida[i]:
+                    print(Fore.GREEN + a[i], end= " ")
+                elif a[i] in palabra_elegida:
+                    print(Fore.YELLOW + a[i], end= " ")
+                else:
+                    print(a[i], end= " ")
+            if a == palabra_elegida:
+                print(Fore.GREEN + f"¡Has acertado en {p} intentos!")
+                break
+            elif p == 5:
+                print(Fore.RED + f"No has acertado la palabra, la palabra era {palabra_elegida}")
+        play = input("Para salir presiona p. Para jugar denuevo presiona cualquier otra letra.")
