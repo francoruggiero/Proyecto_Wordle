@@ -1,5 +1,4 @@
 from ast import For
-from tkinter.ttk import Style
 import colorama
 from colorama import Fore, Back
 colorama.init(autoreset=True)
